@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Catch the Healthy Food! | Healthy Eating Adventures</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            color-scheme: light;
+            --green: #386641;
+            --dark-green: #245333;
+            --light-green: #e7f3df;
+            --page-bg: #f5f9ed;
+            --card-bg: #ffffff;
+            --text-color: #304b35;
+            --muted-color: #627362;
+            --nav-bg: #386641;
+            --border-color: #d6e9ca;
+            --game-sky: #9de5ff;
+            --game-sky-light: #e1f8ff;
+            --game-grass: #79c56e;
+            --game-ground: #b4e59a;
+            --shadow-color: #244d3215;
+        }
+
+        html[data-theme="dark"] {
+            color-scheme: dark;
+            --green: #a8d6a0;
+            --dark-green: #c9edbf;
+            --light-green: #293d2e;
+            --page-bg: #17231b;
+            --card-bg: #223128;
+            --text-color: #edf6e9;
+            --muted-color: #bdcdb8;
+            --nav-bg: #1d3023;
+            --border-color: #405645;
+            --game-sky: #263e51;
+            --game-sky-light: #344a58;
+            --game-grass: #35583b;
+            --game-ground: #436c43;
+            --shadow-color: #00000035;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            background: var(--page-bg);
+            color: var(--text-color);
+            transition: background-color .3s, color .3s;
+            overflow-x: hidden;
+        }
+
+        p {
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .navbar {
+            background: var(--nav-bg);
+            padding: 12px 0;
+            box-shadow: 0 4px 18px var(--shadow-color);
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: 900;
+            font-size: 1.05rem;
+        }
+
+        .brand-emoji {
+            display: inline-block;
+            animation: wiggle 3s infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 85%, 100% { transform: rotate(0); }
+            90% { transform: rotate(-12deg); }
+            95% { transform: rotate(12deg); }
+        }
+
+        .navbar .nav-link {
+            color: white !important;
+            border-radius: 22px;
+            padding: 9px 13px !important;
+            margin: 2px;
+            font-weight: bold;
+            transition: .25s;
+        }
+
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active {
+            background: #ffffff30;
+            transform: translateY(-2px);
+        }
+
+        .navbar-toggler {
+            border: 2px solid #ffffff80;
+            border-radius: 12px;
+        }
+
+        .theme-toggle {
+            border: 2px solid #ffffff80;
+            border-radius: 25px;
+            background: #ffffff18;
+            color: white;
+            padding: 8px 13px;
+            font-weight: bold;
+            white-space: nowrap;
+            transition: .25s;
+        }
+
+        .theme-toggle:hover {
+            background: #ffffff35;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            padding: 40px 15px 15px;
+            isolation: isolate;
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 45px);
+            font-weight: 900;
+            color: var(--dark-green);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--light-green);
+            color: var(--dark-green);
+            padding: 8px 16px;
+            border-radius: 25px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .hero-emoji {
+            display: inline-block;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        .hero-decoration {
+            position: absolute;
+            font-size: 2rem;
+            pointer-events: none;
+            opacity: .55;
+            z-index: -1;
+            animation: floatDecoration 4s infinite;
+        }
+
+        .decoration-one { top: 18px; left: 7%; }
+        .decoration-two { right: 8%; top: 40px; animation-delay: 1s; }
+        .decoration-three { left: 14%; bottom: 20px; animation-delay: 1.5s; }
+
+        @keyframes floatDecoration {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(8deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px auto;
+            padding: 0 12px;
+        }
+
+        .stat {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+            border-radius: 18px;
+            min-width: 105px;
+            padding: 12px 17px;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 25px;
+            margin-top: 3px;
+            color: var(--dark-green);
+        }
+
+        .pulse {
+            animation: scorePulse .3s ease;
+        }
+
+        @keyframes scorePulse {
+            50% { transform: scale(1.2); }
+        }
+
+        #gameArea {
+            position: relative;
+            width: 94%;
+            max-width: 1000px;
+            height: 460px;
+            margin: auto;
+            overflow: hidden;
+            border: 4px solid #9dca8c;
+            border-radius: 28px;
+            background: linear-gradient(
+                var(--game-sky) 0%,
+                var(--game-sky-light) 66%,
+                var(--game-ground) 66%,
+                var(--game-grass) 100%
+            );
+            box-shadow: 0 12px 28px var(--shadow-color);
+            isolation: isolate;
+        }
+
+        .cloud {
+            position: absolute;
+            top: 22px;
+            font-size: 38px;
+            opacity: .8;
+            pointer-events: none;
+            animation: cloudFloat 7s infinite alternate;
+        }
+
+        .cloud.one { left: 8%; }
+        .cloud.two { right: 12%; top: 55px; animation-delay: 1.5s; }
+
+        @keyframes cloudFloat {
+            from { transform: translateX(-8px); }
+            to { transform: translateX(15px); }
+        }
+
+        .tree {
+            position: absolute;
+            bottom: -3px;
+            font-size: 48px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .tree.left { left: 8px; }
+        .tree.right { right: 8px; }
+
+        #startMessage {
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(88%, 470px);
+            padding: 25px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 3px solid var(--border-color);
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 10px 28px #0002;
+        }
+
+        #messageTitle {
+            color: var(--dark-green);
+        }
+
+        .big-food {
+            font-size: 48px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        .food {
+            position: absolute;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4px;
+            border: 0;
+            border-radius: 14px;
+            background: transparent;
+            cursor: pointer;
+            font-size: 39px;
+            animation: floatFood 1.1s infinite alternate;
+            touch-action: manipulation;
+            user-select: none;
+        }
+
+        .food:hover {
+            filter: brightness(1.1);
+            transform: scale(1.15);
+        }
+
+        .food:focus-visible {
+            outline: 3px solid #245333;
+        }
+
+        .food-label {
+            font-size: 10px;
+            font-weight: 900;
+            color: white;
+            padding: 3px 7px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+
+        .good { background: #218c48; }
+        .limit { background: #c83232; }
+        .power { background: #b47b00; }
+
+        @keyframes floatFood {
+            from { transform: translateY(-3px) rotate(-5deg); }
+            to { transform: translateY(9px) rotate(5deg); }
+        }
+
+        .pop {
+            position: absolute;
+            z-index: 8;
+            font-weight: 900;
+            font-size: 24px;
+            pointer-events: none;
+            animation: popUp .8s forwards;
+        }
+
+        @keyframes popUp {
+            0% { transform: translateY(0) scale(.5); opacity: 0; }
+            25% { transform: translateY(-15px) scale(1.2); opacity: 1; }
+            100% { transform: translateY(-60px); opacity: 0; }
+        }
+
+        .confetti {
+            position: fixed;
+            top: -30px;
+            z-index: 9999;
+            pointer-events: none;
+            animation: confettiFall 2.8s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-5vh) rotate(0); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        #feedback {
+            text-align: center;
+            min-height: 35px;
+            margin: 15px 8px;
+            padding: 0 10px;
+            font-weight: 900;
+            color: var(--dark-green);
+        }
+
+        .btn-game {
+            display: inline-block;
+            background: #386641;
+            color: white;
+            border: 2px solid #386641;
+            border-radius: 14px;
+            padding: 11px 20px;
+            font-weight: 900;
+            text-decoration: none;
+            transition: .25s;
+        }
+
+        .btn-game:hover {
+            background: #245333;
+            border-color: #245333;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary-game {
+            background: var(--card-bg);
+            color: var(--dark-green);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary-game:hover {
+            background: var(--light-green);
+            color: var(--dark-green);
+            border-color: var(--green);
+        }
+
+        .btn-game:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .instructions {
+            max-width: 850px;
+            margin: 35px auto;
+            padding: 27px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            box-shadow: 0 5px 18px var(--shadow-color);
+        }
+
+        .instructions h3 {
+            color: var(--dark-green);
+        }
+
+        .instruction-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .instruction-item:last-of-type {
+            border-bottom: 0;
+        }
+
+        .instruction-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .tip-box {
+            background: var(--light-green);
+            color: var(--dark-green);
+            padding: 15px;
+            border-radius: 16px;
+            margin-top: 15px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 32px 15px;
+            text-align: center;
+            background: var(--nav-bg);
+            color: white;
+        }
+
+        footer p { color: white; }
+
+        .footer-food {
+            display: inline-block;
+            font-size: 2rem;
+            animation: bounce 1.5s infinite alternate;
+        }
+
+        .clicked {
+            animation: buttonPop .4s ease;
+        }
+
+        @keyframes buttonPop {
+            35% { transform: scale(.94); }
+            65% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 991px) {
+            .navbar-collapse { padding-top: 12px; }
+            .navbar .nav-link { margin: 3px 0; }
+            .theme-toggle { margin-top: 8px; }
+        }
+
+        @media (max-width: 600px) {
+            #gameArea {
+                height: 420px;
+                width: 96%;
+                border-radius: 20px;
+            }
+
+            .food { font-size: 32px; }
+
+            .stat {
+                min-width: 82px;
+                padding: 9px 12px;
+            }
+
+            .stat strong { font-size: 21px; }
+
+            .instructions {
+                margin: 25px 12px;
+                padding: 20px;
+            }
+
+            #startMessage { padding: 18px; }
+            .tree { font-size: 35px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="dashboard.html">
+            <span class="brand-emoji">🍎</span>
+            Healthy Eating Adventures
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.html">🏠 HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="learn.html">📚 LEARN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="games.html" aria-current="page">🎮 GAMES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="quiz.html">🧠 QUIZ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="help.html">💡 HELP</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <span class="hero-decoration decoration-one">⭐</span>
+    <span class="hero-decoration decoration-two">🍓</span>
+    <span class="hero-decoration decoration-three">🥕</span>
+
+    <div class="container">
+        <span class="hero-badge">🌈 Let's Play and Learn!</span>
+
+        <h1>
+            <span class="hero-emoji">🎮</span>
+            Catch the Healthy Food!
+            <span class="hero-emoji">🍎</span>
+        </h1>
+
+        <p>Catch nutritious foods, collect golden apples and beat your high score!</p>
+        <p>🍎 Healthy food = points | 🍩 Treats = lose a life | 🌟 Golden apple = bonus</p>
+
+        <a href="#gameArea" class="btn-game mt-2">
+            <i class="bi bi-controller"></i> Let's Play!
+        </a>
+    </div>
+</header>
+
+<!-- GAME STATS -->
+<div class="stats">
+    <div class="stat">
+        <span class="stat-label">⭐ SCORE</span>
+        <strong id="score">0</strong>
+    </div>
+
+    <div class="stat">
+        <span class="stat-label">⏱️ TIME</span>
+        <strong><span id="time">30</span>s</strong>
+    </div>
+
+    <div class="stat">
+        <span class="stat-label">❤️ LIVES</span>
+        <strong id="lives">❤️❤️❤️</strong>
+    </div>
+
+    <div class="stat">
+        <span class="stat-label">🔥 COMBO</span>
+        <strong id="combo">x0</strong>
+    </div>
+
+    <div class="stat">
+        <span class="stat-label">🏆 BEST</span>
+        <strong id="best">0</strong>
+    </div>
+</div>
+
+<!-- GAME AREA -->
+<div id="gameArea" aria-label="Healthy food catching game">
+    <div class="cloud one">☁️</div>
+    <div class="cloud two">☁️</div>
+    <div class="tree left">🌳</div>
+    <div class="tree right">🌳</div>
+
+    <div id="startMessage">
+        <div class="big-food">🍎 🥦 🍌</div>
+        <h2 id="messageTitle" class="fw-bold mt-2">Ready, Food Hero?</h2>
+        <p id="messageText">
+            Catch nutritious foods to earn points. Collect golden apples
+            for bonus points and extra time. Try to avoid the treats!
+        </p>
+        <button class="btn-game" id="startButton" type="button">
+            <i class="bi bi-play-fill"></i> Start Game
+        </button>
+    </div>
+</div>
+
+<div id="feedback" aria-live="polite">
+    Ready to become a Healthy Food Hero?
+</div>
+
+<!-- GAME CONTROLS -->
+<div class="text-center px-2">
+    <button class="btn-game btn-secondary-game m-1" id="soundButton" type="button">
+        🔊 Sound: ON
+    </button>
+
+    <button class="btn-game btn-secondary-game m-1" id="pauseButton"
+            type="button" disabled>
+        <i class="bi bi-pause-fill"></i> Pause
+    </button>
+
+    <button class="btn-game m-1" id="restartButton" type="button">
+        <i class="bi bi-arrow-clockwise"></i> Restart
+    </button>
+</div>
+
+<!-- INSTRUCTIONS -->
+<section class="instructions">
+    <h3 class="fw-bold mb-3">📋 How to Play</h3>
+
+    <div class="instruction-item">
+        <span class="instruction-icon">🍎</span>
+        <div>
+            <strong>Healthy foods: +10 points</strong>
+            <p class="mb-0">Catch fruits, vegetables and other nutritious foods. Each healthy catch increases your combo.</p>
+        </div>
+    </div>
+
+    <div class="instruction-item">
+        <span class="instruction-icon">🌟</span>
+        <div>
+            <strong>Golden apple: +25 points</strong>
+            <p class="mb-0">Catch the golden apple to earn bonus points and gain three extra seconds.</p>
+        </div>
+    </div>
+
+    <div class="instruction-item">
+        <span class="instruction-icon">🍩</span>
+        <div>
+            <strong>Treats: lose one life</strong>
+            <p class="mb-0">Avoid these items in the game to keep your lives. Treats can still be enjoyed sometimes as part of a balanced eating pattern.</p>
+        </div>
+    </div>
+
+    <div class="instruction-item">
+        <span class="instruction-icon">🔥</span>
+        <div>
+            <strong>Combo bonus: +20 extra points</strong>
+            <p class="mb-0">Catch five healthy foods in a row to earn a bonus.</p>
+        </div>
+    </div>
+
+    <div class="instruction-item">
+        <span class="instruction-icon">⏱️</span>
+        <div>
+            <strong>Beat the timer!</strong>
+            <p class="mb-0">You have 30 seconds. Try to beat your previous high score.</p>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <strong>💡 Healthy Food Tip</strong>
+        <p class="mb-0">
+            Healthy eating is about enjoying a variety of foods, balanced portions
+            and good habits—not labelling any single food as always bad.
+        </p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-food">🍎 🥦 🍌</div>
+    <h5 class="fw-bold mt-2">Healthy Eating Adventures</h5>
+    <p class="mb-1">Learn • Play • Eat Smart • Grow Strong</p>
+    <small>© 2026 Healthy Eating Adventures</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+/* =========================================
+   2. GAME ELEMENTS AND VARIABLES
+========================================= */
+
+const gameArea = document.getElementById("gameArea");
+const scoreEl = document.getElementById("score");
+const timeEl = document.getElementById("time");
+const livesEl = document.getElementById("lives");
+const comboEl = document.getElementById("combo");
+const bestEl = document.getElementById("best");
+
+const feedbackEl = document.getElementById("feedback");
+const startMessage = document.getElementById("startMessage");
+const startButton = document.getElementById("startButton");
+const pauseButton = document.getElementById("pauseButton");
+const restartButton = document.getElementById("restartButton");
+const soundButton = document.getElementById("soundButton");
+
+const foods = [
+    { emoji: "🍎", name: "Apple", type: "healthy" },
+    { emoji: "🍌", name: "Banana", type: "healthy" },
+    { emoji: "🥦", name: "Broccoli", type: "healthy" },
+    { emoji: "🥕", name: "Carrot", type: "healthy" },
+    { emoji: "🍉", name: "Watermelon", type: "healthy" },
+    { emoji: "🐟", name: "Fish", type: "healthy" },
+    { emoji: "🥚", name: "Egg", type: "healthy" },
+    { emoji: "🥛", name: "Milk", type: "healthy" },
+    { emoji: "🍚", name: "Rice", type: "healthy" },
+    { emoji: "🥜", name: "Nuts", type: "healthy" },
+    { emoji: "🍩", name: "Donut", type: "limit" },
+    { emoji: "🍟", name: "Fries", type: "limit" },
+    { emoji: "🥤", name: "Sugary drink", type: "limit" },
+    { emoji: "🍬", name: "Candy", type: "limit" },
+    { emoji: "🌟🍎", name: "Golden apple", type: "power" }
+];
+
+let score = 0;
+let timeLeft = 30;
+let lives = 3;
+let combo = 0;
+let running = false;
+let paused = false;
+let soundOn = true;
+
+let spawnTimer = null;
+let clockTimer = null;
+let audioContext = null;
+let best = 0;
+
+try {
+    best = Number(localStorage.getItem("healthyFoodBest") || 0);
+} catch (error) {
+    best = 0;
+}
+
+bestEl.textContent = best;
+
+
+/* =========================================
+   3. UPDATE GAME STATS
+========================================= */
+
+function updateStats() {
+    scoreEl.textContent = score;
+    timeEl.textContent = timeLeft;
+    livesEl.textContent = "❤️".repeat(lives) + "🖤".repeat(3 - lives);
+    comboEl.textContent = "x" + combo;
+}
+
+function pulseStat(element) {
+    element.classList.remove("pulse");
+    void element.offsetWidth;
+    element.classList.add("pulse");
+
+    setTimeout(function() {
+        element.classList.remove("pulse");
+    }, 350);
+}
+
+
+/* =========================================
+   4. SOUND EFFECTS
+========================================= */
+
+function playSound(frequency = 600, duration = 0.09, wave = "sine") {
+    if (!soundOn) return;
+
+    try {
+        const AudioContextClass =
+            window.AudioContext || window.webkitAudioContext;
+
+        if (!AudioContextClass) return;
+
+        audioContext = audioContext || new AudioContextClass();
+
+        if (audioContext.state === "suspended") {
+            audioContext.resume();
+        }
+
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        oscillator.type = wave;
+        oscillator.frequency.value = frequency;
+
+        gain.gain.setValueAtTime(0.08, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            audioContext.currentTime + duration
+        );
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + duration);
+    } catch (error) {
+        // The game remains playable without sound.
+    }
+}
+
+
+/* =========================================
+   5. POP-UP ANIMATIONS
+========================================= */
+
+function popText(text, x, y, color) {
+    const pop = document.createElement("div");
+
+    pop.className = "pop";
+    pop.textContent = text;
+    pop.style.left = x + "px";
+    pop.style.top = y + "px";
+    pop.style.color = color;
+
+    gameArea.appendChild(pop);
+
+    setTimeout(function() {
+        pop.remove();
+    }, 850);
+}
+
+
+/* =========================================
+   6. CONFETTI
+========================================= */
+
+function createConfetti() {
+    const symbols = ["⭐", "🌟", "✨", "🍎", "🥦", "💚"];
+
+    for (let i = 0; i < 32; i++) {
+        const piece = document.createElement("span");
+
+        piece.className = "confetti";
+        piece.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.animationDelay = Math.random() * 0.8 + "s";
+        piece.style.fontSize = (Math.random() * 15 + 16) + "px";
+
+        document.body.appendChild(piece);
+
+        setTimeout(function() {
+            piece.remove();
+        }, 3500);
+    }
+}
+
+
+/* =========================================
+   7. CLEAR FOOD ITEMS AND TIMERS
+========================================= */
+
+function clearFoods() {
+    clearInterval(spawnTimer);
+    spawnTimer = null;
+
+    gameArea.querySelectorAll(".food, .pop").forEach(function(element) {
+        element.remove();
+    });
+}
+
+
+/* =========================================
+   8. START GAME
+========================================= */
+
+function startGame() {
+    clearFoods();
+    clearInterval(clockTimer);
+    clockTimer = null;
+
+    score = 0;
+    timeLeft = 30;
+    lives = 3;
+    combo = 0;
+
+    running = true;
+    paused = false;
+
+    updateStats();
+    startMessage.style.display = "none";
+
+    pauseButton.disabled = false;
+    pauseButton.innerHTML = '<i class="bi bi-pause-fill"></i> Pause';
+
+    feedbackEl.textContent = "Go, Food Hero! Catch the healthy foods!";
+
+    playSound(700);
+    spawnFood();
+
+    spawnTimer = setInterval(function() {
+        if (running && !paused) {
+            spawnFood();
+        }
+    }, 650);
+
+    clockTimer = setInterval(function() {
+        if (!running || paused) return;
+
+        timeLeft--;
+        updateStats();
+        pulseStat(timeEl);
+
+        if (timeLeft <= 0) {
+            endGame("⏰ Time's up!");
+        }
+    }, 1000);
+}
+
+
+/* =========================================
+   9. CREATE FOOD ITEMS
+========================================= */
+
+function spawnFood() {
+    if (!running || paused) return;
+
+    if (gameArea.querySelectorAll(".food").length >= 10) {
+        return;
+    }
+
+    const food = foods[Math.floor(Math.random() * foods.length)];
+    const button = document.createElement("button");
+
+    button.className = "food";
+    button.type = "button";
+    button.setAttribute("aria-label", "Catch " + food.name);
+
+    const emoji = document.createElement("span");
+    emoji.textContent = food.emoji;
+
+    const label = document.createElement("span");
+
+    label.className = "food-label " +
+        (food.type === "healthy"
+            ? "good"
+            : food.type === "power"
+                ? "power"
+                : "limit");
+
+    label.textContent =
+        food.type === "healthy"
+            ? "+10"
+            : food.type === "power"
+                ? "BONUS!"
+                : "AVOID";
+
+    button.append(emoji, label);
+
+    const maxX = Math.max(5, gameArea.clientWidth - 90);
+    const maxY = Math.max(100, gameArea.clientHeight - 120);
+
+    button.style.left =
+        (5 + Math.random() * Math.max(1, maxX - 5)) + "px";
+
+    button.style.top =
+        (75 + Math.random() * Math.max(1, maxY - 75)) + "px";
+
+    button.addEventListener("click", function() {
+        catchFood(button, food);
+    });
+
+    gameArea.appendChild(button);
+}
+
+
+/* =========================================
+   10. CATCH FOOD
+========================================= */
+
+function catchFood(button, food) {
+    if (!running || paused || !button.isConnected) return;
+
+    const x = parseFloat(button.style.left) || 20;
+    const y = parseFloat(button.style.top) || 100;
+
+    if (food.type === "healthy") {
+        combo++;
+        score += 10;
+
+        feedbackEl.textContent =
+            "Great choice! " + food.name + " provides useful nutrients! 🍎";
+
+        popText("+10 ⭐", x, y, "#176d38");
+        playSound(650 + Math.min(combo * 25, 300));
+        pulseStat(scoreEl);
+
+        if (combo > 0 && combo % 5 === 0) {
+            score += 20;
+
+            feedbackEl.textContent = "🔥 COMBO BONUS! +20 extra points!";
+
+            popText("+20 COMBO!", x, y - 20, "#c47b00");
+            playSound(950, 0.18);
+        }
+
+    } else if (food.type === "power") {
+        score += 25;
+        timeLeft += 3;
+
+        feedbackEl.textContent =
+            "🌟 Golden apple! +25 points and +3 seconds!";
+
+        popText("+25 🌟 +3s", x, y, "#b47b00");
+        playSound(1000, 0.2);
+
+        pulseStat(scoreEl);
+        pulseStat(timeEl);
+
+    } else {
+        lives--;
+        combo = 0;
+
+        feedbackEl.textContent =
+            "Oops! Try another food. Keep practising! 🌱";
+
+        popText("−1 ❤️", x, y, "#c62828");
+        playSound(180, 0.18, "square");
+        pulseStat(livesEl);
+    }
+
+    button.remove();
+    updateStats();
+
+    if (lives <= 0) {
+        endGame("💚 You used all your lives!");
+    }
+}
+
+
+/* =========================================
+   11. PAUSE AND RESUME
+========================================= */
+
+function togglePause() {
+    if (!running) return;
+
+    paused = !paused;
+
+    if (paused) {
+        clearInterval(spawnTimer);
+        spawnTimer = null;
+
+        gameArea.querySelectorAll(".food").forEach(function(food) {
+            food.style.animationPlayState = "paused";
+        });
+
+        feedbackEl.textContent = "⏸ Game paused. Take a little break!";
+        pauseButton.innerHTML = '<i class="bi bi-play-fill"></i> Resume';
+
+    } else {
+        gameArea.querySelectorAll(".food").forEach(function(food) {
+            food.style.animationPlayState = "running";
+        });
+
+        spawnTimer = setInterval(function() {
+            if (running && !paused) {
+                spawnFood();
+            }
+        }, 650);
+
+        feedbackEl.textContent = "▶ Welcome back, Food Hero!";
+        pauseButton.innerHTML = '<i class="bi bi-pause-fill"></i> Pause';
+    }
+}
+
+pauseButton.addEventListener("click", togglePause);
+
+
+/* =========================================
+   12. END GAME
+========================================= */
+
+function endGame(reason) {
+    if (!running) return;
+
+    running = false;
+    paused = false;
+
+    clearInterval(clockTimer);
+    clockTimer = null;
+
+    clearFoods();
+
+    if (score > best) {
+        best = score;
+        bestEl.textContent = best;
+
+        try {
+            localStorage.setItem("healthyFoodBest", String(best));
+        } catch (error) {
+            // High score remains visible during this session.
+        }
+    }
+
+    pauseButton.disabled = true;
+    startMessage.style.display = "block";
+
+    if (score >= 150) {
+        document.getElementById("messageTitle").textContent =
+            "🏆 Healthy Food Champion!";
+        createConfetti();
+    } else {
+        document.getElementById("messageTitle").textContent =
+            "🎉 Great Effort!";
+    }
+
+    document.getElementById("messageText").textContent =
+        reason + " Your score: " + score +
+        " points. Best score: " + best +
+        ". Play again and see if you can beat your record!";
+
+    startButton.innerHTML =
+        '<i class="bi bi-arrow-clockwise"></i> Play Again';
+
+    feedbackEl.textContent = score >= 150
+        ? "Amazing! You are a Healthy Food Champion! 🥳"
+        : "Keep practising and try to beat your high score! 🌱";
+
+    playSound(score >= 150 ? 900 : 400, 0.25);
+}
+
+
+/* =========================================
+   13. SOUND TOGGLE
+========================================= */
+
+soundButton.addEventListener("click", function() {
+    soundOn = !soundOn;
+
+    soundButton.textContent = soundOn
+        ? "🔊 Sound: ON"
+        : "🔇 Sound: OFF";
+
+    if (soundOn) {
+        playSound(700);
+    }
+});
+
+
+/* =========================================
+   14. RESTART GAME
+========================================= */
+
+startButton.addEventListener("click", startGame);
+restartButton.addEventListener("click", startGame);
+
+
+/* =========================================
+   15. BUTTON ANIMATIONS
+========================================= */
+
+document.addEventListener("click", function(event) {
+    const button = event.target.closest(
+        ".btn-game, .theme-toggle, .navbar .nav-link"
+    );
+
+    if (!button || button.disabled) return;
+
+    button.classList.remove("clicked");
+    void button.offsetWidth;
+    button.classList.add("clicked");
+
+    setTimeout(function() {
+        button.classList.remove("clicked");
+    }, 500);
+});
+
+
+/* =========================================
+   16. MOBILE NAVIGATION
+========================================= */
+
+document.querySelectorAll(".navbar .nav-link").forEach(function(link) {
+    link.addEventListener("click", function() {
+        const navbarCollapse = document.getElementById("mainNavbar");
+
+        if (
+            navbarCollapse.classList.contains("show") &&
+            window.innerWidth < 992
+        ) {
+            bootstrap.Collapse
+                .getOrCreateInstance(navbarCollapse)
+                .hide();
+        }
+    });
+});
+
+
+/* =========================================
+   17. INITIAL GAME DISPLAY
+========================================= */
+
+updateStats();
+</script>
+
+</body>
+</html>

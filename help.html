@@ -1,0 +1,1702 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help Centre | Healthy Eating Adventures</title>
+
+<!-- BOOTSTRAP -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- BOOTSTRAP ICONS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --green: #386641;
+    --green-light: #e7f3df;
+    --green-hover: #d5e8ca;
+    --green-button: #588157;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: var(--green-light);
+}
+
+.navbar-brand {
+    color: var(--green) !important;
+    font-weight: 800;
+}
+
+.navbar .nav-link {
+    color: #304b35 !important;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 8px 12px;
+    margin: 0 3px;
+    transition: background-color .3s, transform .3s, box-shadow .3s;
+}
+
+.navbar .nav-link:hover {
+    background-color: var(--green-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px #38664130;
+}
+
+.navbar .nav-link:active {
+    transform: scale(.9);
+}
+
+.navbar .nav-link.active {
+    background-color: var(--green-hover);
+    color: var(--green) !important;
+}
+
+.navbar-toggler {
+    border-color: var(--green);
+}
+
+/* PAGE HEADER */
+.page-header {
+    background: linear-gradient(135deg, #f1f8eb, #fff4d6);
+    padding: 55px 20px;
+    border-radius: 25px;
+}
+
+.page-header h1 {
+    color: var(--green);
+    font-weight: 800;
+}
+
+.page-header p {
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.7;
+}
+
+/* SECTION TITLE */
+.section-title {
+    color: var(--green);
+    font-weight: 800;
+}
+
+/* QUICK HELP CARDS */
+.help-card {
+    border: none;
+    border-radius: 20px;
+    height: 100%;
+    padding: 25px;
+    text-align: center;
+    transition: transform .3s, box-shadow .3s;
+}
+
+.help-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 25px #38664126 !important;
+}
+
+.help-icon {
+    width: 75px;
+    height: 75px;
+    background: var(--green-light);
+    color: var(--green);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 18px;
+}
+
+/* BUTTONS */
+.btn-success {
+    background-color: var(--green-button);
+    border-color: var(--green-button);
+    transition: transform .25s, box-shadow .25s, background-color .25s;
+}
+
+.btn-success:hover {
+    background-color: var(--green);
+    border-color: var(--green);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px #0002;
+}
+
+/* SEARCH */
+.search-box {
+    max-width: 750px;
+    margin: auto;
+}
+
+.search-box .form-control {
+    border-radius: 0;
+    padding: 14px;
+    border: 2px solid #d5e8ca;
+}
+
+.search-box .form-control:focus {
+    border-color: var(--green-button);
+    box-shadow: 0 0 0 .2rem #58815725;
+}
+
+.search-box .input-group-text {
+    background: white;
+    border: 2px solid #d5e8ca;
+    border-right: none;
+    border-radius: 15px 0 0 15px;
+}
+
+.search-box .btn {
+    border-radius: 0 15px 15px 0;
+}
+
+/* FAQ */
+.faq-item {
+    border: none;
+    border-radius: 15px !important;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 12px #0000000d;
+}
+
+.accordion-button {
+    font-weight: 700;
+    color: #304b35;
+    padding: 20px;
+    background: #f5faef;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--green-light);
+    color: var(--green);
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 .2rem #58815725;
+}
+
+.accordion-body {
+    line-height: 1.8;
+    color: #555;
+    padding: 20px;
+}
+
+.faq-category {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: .75rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+}
+
+/* NO SEARCH RESULTS */
+#noResults {
+    display: none;
+    background: #fff4d6;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+}
+
+/* HELPFUL BUTTONS */
+.helpful-btn {
+    border: 1px solid #d5e8ca;
+    background: white;
+    color: var(--green);
+    border-radius: 20px;
+    padding: 6px 15px;
+    font-size: .85rem;
+    transition: .3s;
+}
+
+.helpful-btn:hover,
+.helpful-btn.selected {
+    background: var(--green);
+    color: white;
+}
+
+/* CONTACT FORM */
+.contact-container {
+    background: linear-gradient(135deg, #f1f8eb, #ffffff);
+    border-radius: 25px;
+    padding: 35px;
+}
+
+.form-label {
+    font-weight: 700;
+    color: #304b35;
+}
+
+.form-control,
+.form-select {
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid #d5e8ca;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--green-button);
+    box-shadow: 0 0 0 .2rem #58815725;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+/* CONTACT INFORMATION */
+.contact-info {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    height: 100%;
+}
+
+.contact-info i {
+    color: var(--green-button);
+    font-size: 1.5rem;
+}
+
+/* SUCCESS MESSAGE */
+#successMessage {
+    display: none;
+    border-radius: 12px;
+}
+
+/* FOOTER */
+footer {
+    background: var(--green);
+    color: white;
+}
+
+footer a:hover {
+    color: #d5e8ca !important;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+    .page-header {
+        padding: 40px 18px;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .contact-container {
+        padding: 22px;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+
+        <a class="navbar-brand fs-5" href="index.html">
+            <i class="bi bi-apple"></i> Healthy Eating Adventures
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">HOME</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="learn.html">LEARN</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="games.html">GAMES</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="quiz.html">QUIZ</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="help.html"
+                       aria-current="page">HELP</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+<main class="container my-5">
+
+    <!-- PAGE HEADER -->
+    <section class="page-header text-center mb-5">
+
+        <span class="badge rounded-pill text-bg-success px-3 py-2">
+            <i class="bi bi-question-circle"></i> Help Centre
+        </span>
+
+        <h1 class="display-5 mt-3">
+            How Can We Help You? 💚
+        </h1>
+
+        <p class="lead mt-3">
+            Have questions about Healthy Eating Adventures?
+            Find answers, explore helpful guides or send us your feedback.
+            We are here to make your learning experience easier and more fun!
+        </p>
+
+        <a href="#faq" class="btn btn-success btn-lg mt-3">
+            <i class="bi bi-search"></i> Find Answers
+        </a>
+
+    </section>
+
+
+    <!-- QUICK HELP -->
+    <section class="my-5">
+
+        <h2 class="section-title text-center">
+            <i class="bi bi-life-preserver"></i>
+            What Do You Need Help With?
+        </h2>
+
+        <p class="text-center mb-4">
+            Choose a section to find the help you need.
+        </p>
+
+        <div class="row g-4">
+
+            <!-- FAQ CARD -->
+            <div class="col-md-4">
+
+                <div class="card shadow-sm help-card">
+
+                    <div class="help-icon">
+                        <i class="bi bi-question-lg"></i>
+                    </div>
+
+                    <h5 class="fw-bold">
+                        Frequently Asked Questions
+                    </h5>
+
+                    <p>
+                        Find answers to common questions about
+                        our learning activities and website.
+                    </p>
+
+                    <a href="#faq" class="btn btn-success mt-auto">
+                        View FAQs <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- USER GUIDE CARD -->
+            <div class="col-md-4">
+
+                <div class="card shadow-sm help-card">
+
+                    <div class="help-icon">
+                        <i class="bi bi-book-half"></i>
+                    </div>
+
+                    <h5 class="fw-bold">Learning Guide</h5>
+
+                    <p>
+                        Discover how to explore learning materials,
+                        play games and complete quizzes.
+                    </p>
+
+                    <a href="#guide" class="btn btn-success mt-auto">
+                        Explore Guide <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTACT CARD -->
+            <div class="col-md-4">
+
+                <div class="card shadow-sm help-card">
+
+                    <div class="help-icon">
+                        <i class="bi bi-chat-heart"></i>
+                    </div>
+
+                    <h5 class="fw-bold">Contact & Feedback</h5>
+
+                    <p>
+                        Have a suggestion or need further assistance?
+                        Share your thoughts with us.
+                    </p>
+
+                    <a href="#contact" class="btn btn-success mt-auto">
+                        Contact Us <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FAQ SECTION -->
+    <section class="my-5" id="faq">
+
+        <h2 class="section-title text-center">
+            <i class="bi bi-search"></i>
+            Frequently Asked Questions
+        </h2>
+
+        <p class="text-center mb-4">
+            Search for a question or browse the answers below.
+        </p>
+
+
+        <!-- SEARCH BAR -->
+        <div class="search-box mb-4">
+
+            <div class="input-group">
+
+                <span class="input-group-text">
+                    <i class="bi bi-search text-success"></i>
+                </span>
+
+                <input type="search"
+                       class="form-control"
+                       id="faqSearch"
+                       placeholder="Search questions... (e.g. games, quiz, healthy food)"
+                       aria-label="Search frequently asked questions">
+
+                <button class="btn btn-success"
+                        type="button"
+                        id="clearSearch">
+
+                    <i class="bi bi-x-lg"></i> Clear
+
+                </button>
+
+            </div>
+
+            <p class="text-secondary text-center mt-2 small"
+               id="searchCount" aria-live="polite">
+
+                Showing all questions
+
+            </p>
+
+        </div>
+
+
+        <!-- FAQ ACCORDION -->
+        <div class="accordion" id="faqAccordion">
+
+
+            <!-- QUESTION 1 -->
+            <div class="accordion-item faq-item">
+
+                <h2 class="accordion-header" id="headingOne">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqOne"
+                            aria-expanded="false"
+                            aria-controls="faqOne">
+
+                        <i class="bi bi-house-door me-2 text-success"></i>
+                        What is Healthy Eating Adventures?
+
+                    </button>
+
+                </h2>
+
+                <div id="faqOne"
+                     class="accordion-collapse collapse"
+                     aria-labelledby="headingOne"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+
+                        <span class="faq-category">General</span>
+
+                        <p>
+                            Healthy Eating Adventures is an educational
+                            website designed to help children learn about
+                            healthy eating through interactive learning
+                            materials, educational games and quizzes.
+                        </p>
+
+                        <div class="border-top pt-3 mt-3">
+
+                            <small class="fw-bold">
+                                Was this answer helpful?
+                            </small>
+
+                            <div class="mt-2">
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'yes')">
+
+                                    <i class="bi bi-hand-thumbs-up"></i> Yes
+
+                                </button>
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'no')">
+
+                                    <i class="bi bi-hand-thumbs-down"></i> No
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- QUESTION 2 -->
+            <div class="accordion-item faq-item">
+
+                <h2 class="accordion-header" id="headingTwo">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqTwo"
+                            aria-expanded="false"
+                            aria-controls="faqTwo">
+
+                        <i class="bi bi-book me-2 text-success"></i>
+                        How do I access the learning materials?
+
+                    </button>
+
+                </h2>
+
+                <div id="faqTwo"
+                     class="accordion-collapse collapse"
+                     aria-labelledby="headingTwo"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+
+                        <span class="faq-category">Learning</span>
+
+                        <p>
+                            Click on the <strong>LEARN</strong> section
+                            in the navigation bar. You can explore different
+                            topics such as healthy foods, balanced plates
+                            and healthy eating habits.
+                        </p>
+
+                        <a href="learn.html" class="btn btn-sm btn-success">
+                            <i class="bi bi-book-half"></i> Go to Learning
+                        </a>
+
+                        <div class="border-top pt-3 mt-3">
+
+                            <small class="fw-bold">
+                                Was this answer helpful?
+                            </small>
+
+                            <div class="mt-2">
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'yes')">
+
+                                    <i class="bi bi-hand-thumbs-up"></i> Yes
+
+                                </button>
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'no')">
+
+                                    <i class="bi bi-hand-thumbs-down"></i> No
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- QUESTION 3 -->
+            <div class="accordion-item faq-item">
+
+                <h2 class="accordion-header" id="headingThree">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqThree"
+                            aria-expanded="false"
+                            aria-controls="faqThree">
+
+                        <i class="bi bi-controller me-2 text-success"></i>
+                        How can I play the educational games?
+
+                    </button>
+
+                </h2>
+
+                <div id="faqThree"
+                     class="accordion-collapse collapse"
+                     aria-labelledby="headingThree"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+
+                        <span class="faq-category">Games</span>
+
+                        <p>
+                            Select the <strong>GAMES</strong> section
+                            from the navigation bar. Choose an available
+                            game and follow the instructions displayed
+                            on the screen to start playing.
+                        </p>
+
+                        <a href="games.html" class="btn btn-sm btn-success">
+                            <i class="bi bi-controller"></i> Play Games
+                        </a>
+
+                        <div class="border-top pt-3 mt-3">
+
+                            <small class="fw-bold">
+                                Was this answer helpful?
+                            </small>
+
+                            <div class="mt-2">
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'yes')">
+
+                                    <i class="bi bi-hand-thumbs-up"></i> Yes
+
+                                </button>
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'no')">
+
+                                    <i class="bi bi-hand-thumbs-down"></i> No
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- QUESTION 4 -->
+            <div class="accordion-item faq-item">
+
+                <h2 class="accordion-header" id="headingFour">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqFour"
+                            aria-expanded="false"
+                            aria-controls="faqFour">
+
+                        <i class="bi bi-patch-question me-2 text-success"></i>
+                        How do I complete the quiz?
+
+                    </button>
+
+                </h2>
+
+                <div id="faqFour"
+                     class="accordion-collapse collapse"
+                     aria-labelledby="headingFour"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+
+                        <span class="faq-category">Quiz</span>
+
+                        <p>
+                            Go to the <strong>QUIZ</strong> section and
+                            select the quiz you want to attempt. Read each
+                            question carefully, select your answer and
+                            submit your responses to see your results.
+                        </p>
+
+                        <a href="quiz.html" class="btn btn-sm btn-success">
+                            <i class="bi bi-patch-question"></i> Start Quiz
+                        </a>
+
+                        <div class="border-top pt-3 mt-3">
+
+                            <small class="fw-bold">
+                                Was this answer helpful?
+                            </small>
+
+                            <div class="mt-2">
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'yes')">
+
+                                    <i class="bi bi-hand-thumbs-up"></i> Yes
+
+                                </button>
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'no')">
+
+                                    <i class="bi bi-hand-thumbs-down"></i> No
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- QUESTION 5 -->
+            <div class="accordion-item faq-item">
+
+                <h2 class="accordion-header" id="headingFive">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqFive"
+                            aria-expanded="false"
+                            aria-controls="faqFive">
+
+                        <i class="bi bi-phone me-2 text-success"></i>
+                        Can I access the website on my mobile phone?
+
+                    </button>
+
+                </h2>
+
+                <div id="faqFive"
+                     class="accordion-collapse collapse"
+                     aria-labelledby="headingFive"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+
+                        <span class="faq-category">Technical Support</span>
+
+                        <p>
+                            Yes! The website uses a responsive layout
+                            that adjusts to different screen sizes,
+                            including desktop computers, tablets
+                            and mobile phones.
+                        </p>
+
+                        <div class="border-top pt-3 mt-3">
+
+                            <small class="fw-bold">
+                                Was this answer helpful?
+                            </small>
+
+                            <div class="mt-2">
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'yes')">
+
+                                    <i class="bi bi-hand-thumbs-up"></i> Yes
+
+                                </button>
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'no')">
+
+                                    <i class="bi bi-hand-thumbs-down"></i> No
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- QUESTION 6 -->
+            <div class="accordion-item faq-item">
+
+                <h2 class="accordion-header" id="headingSix">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqSix"
+                            aria-expanded="false"
+                            aria-controls="faqSix">
+
+                        <i class="bi bi-exclamation-circle me-2 text-success"></i>
+                        What should I do if a page does not work?
+
+                    </button>
+
+                </h2>
+
+                <div id="faqSix"
+                     class="accordion-collapse collapse"
+                     aria-labelledby="headingSix"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+
+                        <span class="faq-category">Technical Support</span>
+
+                        <p>
+                            First, refresh the page and check your internet
+                            connection. Make sure you are using an updated
+                            web browser. If the problem continues, you can
+                            send us a message through the contact form below.
+                        </p>
+
+                        <div class="border-top pt-3 mt-3">
+
+                            <small class="fw-bold">
+                                Was this answer helpful?
+                            </small>
+
+                            <div class="mt-2">
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'yes')">
+
+                                    <i class="bi bi-hand-thumbs-up"></i> Yes
+
+                                </button>
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'no')">
+
+                                    <i class="bi bi-hand-thumbs-down"></i> No
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- QUESTION 7 -->
+            <div class="accordion-item faq-item">
+
+                <h2 class="accordion-header" id="headingSeven">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faqSeven"
+                            aria-expanded="false"
+                            aria-controls="faqSeven">
+
+                        <i class="bi bi-chat-heart me-2 text-success"></i>
+                        How can I share my feedback?
+
+                    </button>
+
+                </h2>
+
+                <div id="faqSeven"
+                     class="accordion-collapse collapse"
+                     aria-labelledby="headingSeven"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+
+                        <span class="faq-category">Feedback</span>
+
+                        <p>
+                            You can share your comments, suggestions
+                            or questions using the Contact & Feedback
+                            form at the bottom of this page.
+                        </p>
+
+                        <a href="#contact" class="btn btn-sm btn-success">
+                            <i class="bi bi-envelope"></i> Send Feedback
+                        </a>
+
+                        <div class="border-top pt-3 mt-3">
+
+                            <small class="fw-bold">
+                                Was this answer helpful?
+                            </small>
+
+                            <div class="mt-2">
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'yes')">
+
+                                    <i class="bi bi-hand-thumbs-up"></i> Yes
+
+                                </button>
+
+                                <button class="helpful-btn"
+                                        type="button"
+                                        onclick="rateFAQ(this, 'no')">
+
+                                    <i class="bi bi-hand-thumbs-down"></i> No
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- NO SEARCH RESULTS -->
+        <div id="noResults" class="mt-4">
+
+            <i class="bi bi-emoji-frown fs-1 text-success"></i>
+
+            <h5 class="fw-bold mt-3">
+                Oops! No Questions Found.
+            </h5>
+
+            <p class="mb-3">
+                We couldn't find any questions matching your search.
+                Try using different keywords.
+            </p>
+
+            <button class="btn btn-success btn-sm"
+                    type="button"
+                    onclick="resetSearch()">
+
+                <i class="bi bi-arrow-counterclockwise"></i>
+                Show All Questions
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUICK USER GUIDE -->
+    <section class="my-5" id="guide">
+
+        <h2 class="section-title text-center">
+            <i class="bi bi-compass"></i> Quick User Guide
+        </h2>
+
+        <p class="text-center mb-4">
+            Follow these simple steps to explore the website.
+        </p>
+
+        <div class="row g-4">
+
+
+            <!-- STEP 1 -->
+            <div class="col-md-3 col-6">
+
+                <div class="card help-card shadow-sm">
+
+                    <div class="help-icon">
+                        <i class="bi bi-book"></i>
+                    </div>
+
+                    <h6 class="fw-bold">Step 1</h6>
+
+                    <p class="small">
+                        Explore different healthy eating topics
+                        in the Learn section.
+                    </p>
+
+                    <a href="learn.html"
+                       class="btn btn-outline-success btn-sm mt-auto">
+                        Explore
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- STEP 2 -->
+            <div class="col-md-3 col-6">
+
+                <div class="card help-card shadow-sm">
+
+                    <div class="help-icon">
+                        <i class="bi bi-controller"></i>
+                    </div>
+
+                    <h6 class="fw-bold">Step 2</h6>
+
+                    <p class="small">
+                        Play interactive games and collect
+                        points while learning.
+                    </p>
+
+                    <a href="games.html"
+                       class="btn btn-outline-success btn-sm mt-auto">
+                        Play Games
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- STEP 3 -->
+            <div class="col-md-3 col-6">
+
+                <div class="card help-card shadow-sm">
+
+                    <div class="help-icon">
+                        <i class="bi bi-patch-question"></i>
+                    </div>
+
+                    <h6 class="fw-bold">Step 3</h6>
+
+                    <p class="small">
+                        Answer quiz questions to test
+                        your knowledge.
+                    </p>
+
+                    <a href="quiz.html"
+                       class="btn btn-outline-success btn-sm mt-auto">
+                        Take Quiz
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- STEP 4 -->
+            <div class="col-md-3 col-6">
+
+                <div class="card help-card shadow-sm">
+
+                    <div class="help-icon">
+                        <i class="bi bi-trophy"></i>
+                    </div>
+
+                    <h6 class="fw-bold">Step 4</h6>
+
+                    <p class="small">
+                        Continue exploring and build
+                        healthy eating habits.
+                    </p>
+
+                    <a href="index.html"
+                       class="btn btn-outline-success btn-sm mt-auto">
+                        Home
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CONTACT & FEEDBACK -->
+    <section class="my-5" id="contact">
+
+        <div class="text-center mb-4">
+
+            <span class="badge rounded-pill text-bg-success px-3 py-2">
+                <i class="bi bi-chat-dots"></i> Get in Touch
+            </span>
+
+            <h2 class="section-title mt-3">
+                Contact & Feedback 💌
+            </h2>
+
+            <p>
+                We would love to hear from you!
+                Send us your questions, comments or suggestions.
+            </p>
+
+        </div>
+
+
+        <div class="contact-container shadow-sm">
+
+            <div class="row g-4">
+
+
+                <!-- CONTACT INFORMATION -->
+                <div class="col-lg-4">
+
+                    <div class="contact-info shadow-sm">
+
+                        <h4 class="fw-bold mb-4"
+                            style="color:#386641;">
+                            Let's Connect!
+                        </h4>
+
+                        <p>
+                            Your feedback helps us improve
+                            Healthy Eating Adventures.
+                        </p>
+
+                        <hr>
+
+                        <div class="d-flex align-items-start gap-3 mb-4">
+
+                            <i class="bi bi-question-circle"></i>
+
+                            <div>
+                                <h6 class="fw-bold mb-1">Need Help?</h6>
+
+                                <small>
+                                    Tell us if you experience
+                                    any difficulties.
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="d-flex align-items-start gap-3 mb-4">
+
+                            <i class="bi bi-lightbulb"></i>
+
+                            <div>
+                                <h6 class="fw-bold mb-1">Have an Idea?</h6>
+
+                                <small>
+                                    Share your suggestions
+                                    to improve our website.
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="d-flex align-items-start gap-3">
+
+                            <i class="bi bi-heart"></i>
+
+                            <div>
+                                <h6 class="fw-bold mb-1">
+                                    Share Your Thoughts
+                                </h6>
+
+                                <small>
+                                    Let us know about your
+                                    learning experience.
+                                </small>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- CONTACT FORM -->
+                <div class="col-lg-8">
+
+                    <form id="contactForm">
+
+                        <!-- SUCCESS MESSAGE -->
+                        <div class="alert alert-success"
+                             id="successMessage"
+                             role="alert"
+                             aria-live="polite">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            <strong>Thank You!</strong>
+
+                            Your message has been recorded
+                            in this demonstration.
+
+                        </div>
+
+
+                        <!-- NAME -->
+                        <div class="mb-3">
+
+                            <label for="userName" class="form-label">
+                                Your Name *
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="userName"
+                                   placeholder="Enter your name"
+                                   maxlength="80"
+                                   autocomplete="name"
+                                   required>
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+                        <div class="mb-3">
+
+                            <label for="userEmail" class="form-label">
+                                Email Address *
+                            </label>
+
+                            <input type="email"
+                                   class="form-control"
+                                   id="userEmail"
+                                   placeholder="example@email.com"
+                                   maxlength="254"
+                                   autocomplete="email"
+                                   required>
+
+                        </div>
+
+
+                        <!-- SUBJECT -->
+                        <div class="mb-3">
+
+                            <label for="messageSubject" class="form-label">
+                                Type of Message *
+                            </label>
+
+                            <select class="form-select"
+                                    id="messageSubject"
+                                    required>
+
+                                <option value="" selected disabled>
+                                    Select your message type
+                                </option>
+
+                                <option value="General Enquiry">
+                                    General Enquiry
+                                </option>
+
+                                <option value="Technical Support">
+                                    Technical Support
+                                </option>
+
+                                <option value="Learning Materials">
+                                    Learning Materials
+                                </option>
+
+                                <option value="Games and Quiz">
+                                    Games and Quiz
+                                </option>
+
+                                <option value="Suggestion">
+                                    Suggestion
+                                </option>
+
+                                <option value="Feedback">
+                                    Feedback
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- MESSAGE -->
+                        <div class="mb-3">
+
+                            <label for="userMessage" class="form-label">
+                                Your Message *
+                            </label>
+
+                            <textarea class="form-control"
+                                      id="userMessage"
+                                      rows="5"
+                                      maxlength="1000"
+                                      placeholder="Write your message here..."
+                                      required></textarea>
+
+                            <small class="text-secondary">
+                                <span id="characterCount">0</span>/1000 characters
+                            </small>
+
+                        </div>
+
+
+                        <!-- FORM BUTTONS -->
+                        <div class="d-flex flex-wrap gap-2">
+
+                            <button type="submit"
+                                    class="btn btn-success px-4">
+
+                                <i class="bi bi-send-fill"></i>
+                                Submit Message
+
+                            </button>
+
+                            <button type="reset"
+                                    class="btn btn-outline-secondary px-4">
+
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                                Reset
+
+                            </button>
+
+                        </div>
+
+                        <small class="text-secondary d-block mt-3">
+                            * Required fields
+                        </small>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BACK TO TOP -->
+    <div class="text-center my-5">
+
+        <p class="fw-bold">
+            Still exploring? Let's continue learning!
+        </p>
+
+        <a href="#" class="btn btn-success rounded-pill px-4">
+
+            <i class="bi bi-arrow-up-circle"></i>
+            Back to Top
+
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="mt-5">
+
+    <div class="container text-center py-4">
+
+        <h5 class="fw-bold">
+            <i class="bi bi-apple"></i>
+            Healthy Eating Adventures
+        </h5>
+
+        <p class="mb-2">
+            Learn, Play and Eat Healthy!
+        </p>
+
+        <div class="mb-3">
+
+            <a href="index.html"
+               class="text-white text-decoration-none mx-2">
+                Home
+            </a>
+
+            <a href="learn.html"
+               class="text-white text-decoration-none mx-2">
+                Learn
+            </a>
+
+            <a href="games.html"
+               class="text-white text-decoration-none mx-2">
+                Games
+            </a>
+
+            <a href="quiz.html"
+               class="text-white text-decoration-none mx-2">
+                Quiz
+            </a>
+
+            <a href="help.html"
+               class="text-white text-decoration-none mx-2">
+                Help
+            </a>
+
+        </div>
+
+        <p class="mb-0">
+            &copy; 2026 Healthy Eating Adventures.
+            Educational Courseware.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- BOOTSTRAP JAVASCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+
+/* FAQ SEARCH */
+const faqSearch = document.getElementById("faqSearch");
+const faqItems = document.querySelectorAll(".faq-item");
+const noResults = document.getElementById("noResults");
+const searchCount = document.getElementById("searchCount");
+const clearSearch = document.getElementById("clearSearch");
+
+
+faqSearch.addEventListener("input", function() {
+
+    const searchValue = faqSearch.value.toLowerCase().trim();
+
+    let visibleCount = 0;
+
+    faqItems.forEach(function(item) {
+
+        const question = item.innerText.toLowerCase();
+
+        if (question.includes(searchValue)) {
+
+            item.style.display = "";
+
+            visibleCount++;
+
+        } else {
+
+            item.style.display = "none";
+
+            // Close hidden FAQ answers
+            const collapse = item.querySelector(".accordion-collapse");
+
+            const instance = bootstrap.Collapse.getInstance(collapse);
+
+            if (instance) {
+                instance.hide();
+            }
+
+        }
+
+    });
+
+
+    // Update search results
+    searchCount.textContent =
+        "Found " + visibleCount + " question(s)";
+
+    // Show or hide no results message
+    noResults.style.display =
+        visibleCount === 0 ? "block" : "none";
+
+});
+
+
+/* CLEAR SEARCH */
+clearSearch.addEventListener("click", resetSearch);
+
+
+function resetSearch() {
+
+    faqSearch.value = "";
+
+    faqItems.forEach(function(item) {
+
+        item.style.display = "";
+
+    });
+
+    noResults.style.display = "none";
+
+    searchCount.textContent = "Showing all questions";
+
+    faqSearch.focus();
+
+}
+
+
+/* FAQ HELPFUL BUTTONS */
+function rateFAQ(button, rating) {
+
+    const buttons = button.parentElement.querySelectorAll(".helpful-btn");
+
+    buttons.forEach(function(btn) {
+
+        btn.classList.remove("selected");
+
+        btn.disabled = false;
+
+    });
+
+    button.classList.add("selected");
+
+    buttons.forEach(function(btn) {
+
+        if (btn !== button) {
+            btn.disabled = true;
+        }
+
+    });
+
+    const message = rating === "yes"
+        ? "Thank you! Glad we could help!"
+        : "Thank you! We will use your feedback to improve.";
+
+    let response = button.parentElement.querySelector(".rating-response");
+
+    if (!response) {
+
+        response = document.createElement("p");
+
+        response.className =
+            "rating-response text-success small mt-2 mb-0";
+
+        button.parentElement.appendChild(response);
+
+    }
+
+    response.textContent = message;
+
+}
+
+
+/* CHARACTER COUNTER */
+const userMessage = document.getElementById("userMessage");
+
+const characterCount = document.getElementById("characterCount");
+
+
+userMessage.addEventListener("input", function() {
+
+    characterCount.textContent = userMessage.value.length;
+
+});
+
+
+/* CONTACT FORM */
+const contactForm = document.getElementById("contactForm");
+
+const successMessage = document.getElementById("successMessage");
+
+
+contactForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    // Check form validity
+    if (!contactForm.checkValidity()) {
+
+        contactForm.reportValidity();
+
+        return;
+
+    }
+
+    // Show success message
+    successMessage.style.display = "block";
+
+    // Reset form
+    contactForm.reset();
+
+    characterCount.textContent = "0";
+
+    // Scroll to success message
+    successMessage.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+});
+
+
+/* RESET FORM */
+contactForm.addEventListener("reset", function() {
+
+    successMessage.style.display = "none";
+
+    characterCount.textContent = "0";
+
+});
+
+</script>
+
+</body>
+</html>
